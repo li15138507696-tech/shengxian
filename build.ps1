@@ -7,7 +7,7 @@ param(
     # Default follows the newest released artifact; bump this line on every release.
     # The old fixed default (0.3.18) made a forgotten -ModVersion collide with an existing jar.
     # 0.3.27 was itself stale until 0.3.92, which is the same footgun one release later.
-    [string]$ModVersion='0.3.93'
+    [string]$ModVersion='0.3.94'
 )
 $ErrorActionPreference='Stop'
 Set-StrictMode -Version Latest

@@ -4,7 +4,7 @@ license = "shengxian: All Rights Reserved; bundled Veil 4.5.2: LGPL-3.0"
 
 [[mods]]
 modId = "shengxian"
-version = "0.3.93"
+version = "0.3.94"
 displayName = "蛊真人·升仙框架"
 authors = "shengxian"
 description = '''

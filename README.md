@@ -1,8 +1,10 @@
 # 蛊真人·升仙
 
-独立 NeoForge 附属模组，ID shengxian，当前构建 0.3.93（门禁重载脱钩修复）。目标环境为 Minecraft 1.21.1、Java 21 与蛊真人本体；不依赖“天意”。
+独立 NeoForge 附属模组，ID shengxian，当前构建 0.3.94（十绝体路线）。目标环境为 Minecraft 1.21.1、Java 21 与蛊真人本体；不依赖“天意”。
 
 ## 当前状态
+
+0.3.94 落地首个**特殊升仙路线：十绝体**（CANON-007）。此前十绝体只是被 `!tenExtremes` 挡在普通路线门外的排除项，没有任何自己的路径。现在它有了独立资格判定与 `RuleProfile.tenExtremes()`，**碎窍不需要真元冲击**——解开体内蛊虫封印后空窍自行崩裂，不扣真元、不写真元意图（因真元意图本就可选，未改 schema）；**灾劫更凶**，由体质而非配置决定，创建时即冻结 `Profile.TEN_EXTREMES` 并随会话持久化，配置覆盖不了它。**小家子气蛊影响灾劫刻意未实现**：原著无本体物品 ID，而 CANON-007 明确要求不能把个例蛊虫当固定配置发放。213 项回归通过；普通路线行为完全不变。见 [0.3.94 十绝体路线](docs/verification-0.3.94-ten-extremes.md)。
 
 0.3.93 用 `-Xlint:all` 做了一次完整排查（项目平时 `-nowarn`，静态检查全被压掉），修掉一个本轮引入的回归：`readiness()` 每次实时读配置，而 `SessionStore`/`AscensionService` 在启动时一次性捕获必需集，运维运行中把 `requireUpstreamApertureWrite` 改 true 并重载配置后会出现「界面说门禁关闭、`store.start()` 仍放行」的判定分裂。现改为每次判定求值的 `Supplier<Set>`。同时清掉 2 条静态调用警告。211 项回归通过；仍有 9 条 lint 警告按性质保留（6 条 `EventBusSubscriber.bus()` 被 NeoForge 标记移除，升级时会硬失败）。见 [0.3.93 排查记录](docs/verification-0.3.93-gate-reload-desync.md)。
 

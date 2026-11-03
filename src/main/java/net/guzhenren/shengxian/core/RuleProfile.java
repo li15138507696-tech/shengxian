@@ -38,5 +38,14 @@ public record RuleProfile(String id, boolean evidenceVerified, Set<Capability> c
         return new RuleProfile("ordinary-five-to-six", true, ordinaryRequired(false));
     }
 
+    /**
+     * CANON-007 ten-extremes route. Same capabilities as the ordinary route — the difference is
+     * mechanical, not a missing feature: the aperture ruptures by itself instead of being shocked
+     * with true essence, and the calamities are worse.
+     */
+    public static RuleProfile tenExtremes() {
+        return new RuleProfile("ten-extremes-five-to-six", true, ordinaryRequired(false));
+    }
+
     public enum Capability { BREAK_APERTURE, CONTROL_QI, FORM_APERTURE, IMMORTAL_ESSENCE, UPSTREAM_APERTURE_WRITE, CANONICAL_TRIBULATION, CANONICAL_FAILURE, GU_BACKLASH }
 }

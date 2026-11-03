@@ -348,6 +348,12 @@ public final class FileSessionRepository implements SessionRepository {
         if (record.progress().vitalGu().bound()) {
             initial = initial.withVitalGu(record.progress().vitalGu());
         }
+        // CANON-007: a ten-extremes session freezes its harsher calamity profile at creation, because
+        // the trigger is the player's physique and not an operator setting. It is the only profile a
+        // new record may carry; every other pre-set field is still rejected below.
+        if (record.progress().tribulationProfile() == TribulationParameters.Profile.TEN_EXTREMES) {
+            initial = initial.withTribulationProfile(TribulationParameters.Profile.TEN_EXTREMES);
+        }
         if (!record.progress().equals(initial)) {
             throw new IOException("Initial state can only carry its bounded human reserve and bound BenMingGu");
         }

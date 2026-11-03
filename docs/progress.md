@@ -214,3 +214,14 @@
 - 另 9 条保留：6 条 `EventBusSubscriber.bus()` 已标记移除（升级 NeoForge 时会硬失败，非当前缺陷）、1 条 `[this-escape]`（无子类，当前无害）、1 条 `hasChunkAt` 弃用、1 条锁未引用（虚警，`synchronized` 已保证互斥）。模式扫描：字符串 `==`、`equals` 缺 `hashCode`、流未关闭均为 0 处。
 - 211 项回归（+1 回归测试）；Build/Verify 全过。产物 `shengxian-0.3.93.jar`，SHA256 `4f2d769d…6290`。
 - 未实机验证：运行中改配置再试启动的实机表现，只有域层回归覆盖。
+
+## 2026-11-02 0.3.94 十绝体路线（CANON-007）
+
+- 首个特殊升仙路线落地。此前十绝体只是被排除项 `!tenExtremes` 挡在普通路线门外，没有任何自己的路径。
+- 事实核对：`tenExtremes` 来自本体 `kongqiao == 3.0`，该编码已审计为**资质/体质编码（3=十绝体）**，`shiqiao` 才是失窍布尔（计划文档第 196 行）。UPSTREAM-006 的"不应接入"指不得当空窍状态用，不涉及体质分类。
+- 独立资格与 profile：新增 `TenExtremesQualification.fivePeak(...)` 与 `RuleProfile.tenExtremes()`。刻意用两个独立谓词，不加布尔开关——普通路线必须继续拒绝十绝体，共用开关容易把某条路线悄悄放宽。
+- 自碎：新增 `AscensionService.beginSelfRupture(...)`，`PREPARING → BREAKING` 只写 `ShatterClock`、**不写真元扣费意图**。因真元意图本就可选（仓储仅在存在时校验），**无需改 schema**；阶段图未改，区别在机制（普通是持续冲击并扣费，十绝体是解封自崩）。碎裂时长沿用同一参数，属游戏映射。
+- 灾劫更凶：新增 `Profile.TEN_EXTREMES` + `TribulationParameters.tenExtremes()`，阈值更低、载体更多、间隔更短、风险更高。由**体质**决定：`prepare()` 对十绝体在创建时冻结该 profile，随会话持久化，引擎会用冻结值重建参数，配置无法覆盖；`configuredProfile("TEN_EXTREMES")` 显式回落，运维手写该名不改任何路线难度。仓储创建期不变量只为此放开一格。
+- **刻意未做**：小家子气蛊影响灾劫。原著无本体物品 ID，已核 8 个催动点里没有它，而 CANON-007 明确要求"不能把个例蛊虫当固定配置发放"——任何按 ID 减伤的实现都是编造 ID。保持关闭。
+- 213 项回归（+2）；Build/Verify 全过，276 个 class。产物 `shengxian-0.3.94.jar`，SHA256 `650b7c06…02ad`。
+- 未实机验证：真实入口需要本体 `kongqiao == 3.0` 的角色，本次只有域层与编译验证。

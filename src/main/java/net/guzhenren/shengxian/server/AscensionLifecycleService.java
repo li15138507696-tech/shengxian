@@ -177,8 +177,11 @@ public final class AscensionLifecycleService {
         ApertureKey key = key(player);
         if (store.find(key).isPresent()) throw new IOException("该空窍已有升仙记录");
         GuzhenrenPlayerBridge.Snapshot snapshot = UPSTREAM.inspect(player);
-        if (!snapshot.ordinaryFivePeak()) {
-            throw new IOException("普通路线要求五转四至五阶段、未失窍且不是十绝体");
+        boolean tenExtremes = net.guzhenren.shengxian.core.TenExtremesQualification.fivePeak(
+                snapshot.rank(), snapshot.stage(), snapshot.stageShifted(),
+                snapshot.tenExtremes(), snapshot.apertureLost());
+        if (!tenExtremes && !snapshot.ordinaryFivePeak()) {
+            throw new IOException("升仙要求五转四至五阶段且未失窍");
         }
         var item = UPSTREAM.vitalGu(player);
         if (item.isEmpty()) throw new IOException("本体没有记录本命蛊");
@@ -190,12 +193,18 @@ public final class AscensionLifecycleService {
         if (name.length() > 128) name = name.substring(0, 128);
         var binding = AscensionServer.benming().bindOrReplaceUncommitted(player.getUUID(), fingerprint, name);
         double reserve = UPSTREAM.initialHumanQiReserve(player);
-        store.start(key, true, Optional.of(RuleProfile.ordinary()), worldTick(player),
-                reserve, new AscensionProgress.VitalGu(binding.fingerprint(), binding.displayName()));
+        store.start(key, true,
+                Optional.of(tenExtremes ? RuleProfile.tenExtremes() : RuleProfile.ordinary()),
+                worldTick(player),
+                reserve, new AscensionProgress.VitalGu(binding.fingerprint(), binding.displayName()),
+                // CANON-007: the worse calamities follow from the physique, so the profile is frozen
+                // here and persisted; the ordinary route keeps the configured profile.
+                tenExtremes ? net.guzhenren.shengxian.core.TribulationParameters.Profile.TEN_EXTREMES : null);
         AscensionAdvancements.syncPhase(player, Phase.PREPARING);
         AscensionSounds.phaseOnce(player, Phase.PREPARING);
         return "已备妥升仙会话。有限人气储备=" + reserve
-                + "（本体魂魄、体质、气运的游戏映射；不使用 renqi）。准备好后执行“碎窍”。";
+                + "（本体魂魄、体质、气运的游戏映射；不使用 renqi）。准备好后执行“碎窍”。"
+                + (tenExtremes ? "（十绝体：窍壁本就难以承受，碎窍不需要真元冲击。）" : "");
     }
 
     public static String shatter(ServerPlayer player) throws IOException {
@@ -205,16 +214,27 @@ public final class AscensionLifecycleService {
         var record = store.load(key);
         if (record.session().phase() != Phase.PREPARING) throw new IOException("当前阶段不能开始碎窍");
         var snapshot = UPSTREAM.inspect(player);
-        if (!snapshot.ordinaryFivePeak()) throw new IOException("境界或路线条件已变化");
+        boolean tenExtremes = net.guzhenren.shengxian.core.TenExtremesQualification.fivePeak(
+                snapshot.rank(), snapshot.stage(), snapshot.stageShifted(),
+                snapshot.tenExtremes(), snapshot.apertureLost());
+        if (!tenExtremes && !snapshot.ordinaryFivePeak()) throw new IOException("境界或路线条件已变化");
         var binding = record.progress().vitalGu();
         if (!binding.bound() || !BenMingGuCustody.holds(player, binding.fingerprint())) {
             throw new IOException("本命蛊与准备记录不一致");
+        }
+        long tick = worldTick(player);
+        if (tenExtremes) {
+            // CANON-007: the ten-extremes wall is already barely holding, so releasing the gu seal
+            // ruptures it. No true-essence shock is required, so none is charged.
+            store.beginSelfRupture(key, record.session().stateRevision(),
+                    nextSequence(record.session(), tick), tick);
+            return "十绝体窍壁本就难以承受，封印解开后自行碎裂，未耗费真元。"
+                    + "过程开始后不可取消；掉线期间暂停计时。";
         }
         double before = UPSTREAM.currentTrueEssence(player);
         double cost = Math.max(1.0, Math.ceil(snapshot.maxTrueEssence() * ShengxianConfig.shatterEssenceFraction()));
         if (before < cost) throw new IOException("真元不足以冲击窍壁");
         double target = before - cost;
-        long tick = worldTick(player);
         AscensionRecord breaking = store.beginShatter(key, record.session().stateRevision(),
                 nextSequence(record.session(), tick), tick, before, target);
         ensureShatterEssenceCommitted(player, breaking);

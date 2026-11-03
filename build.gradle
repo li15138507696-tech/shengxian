@@ -1,7 +1,7 @@
 plugins { id 'java' }
 
 group = 'net.guzhenren.shengxian'
-version = '0.3.93'
+version = '0.3.94'
 base { archivesName = 'shengxian' }
 java { toolchain { languageVersion = JavaLanguageVersion.of(21) } }
 

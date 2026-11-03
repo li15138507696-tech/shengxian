@@ -111,8 +111,16 @@ public final class SessionStore {
     public synchronized AscensionRecord start(ApertureKey key, boolean verifiedFivePeak,
                                               Optional<RuleProfile> profile, long serverTick,
                                               double humanQiReserve, AscensionProgress.VitalGu vitalGu) throws IOException {
+        return start(key, verifiedFivePeak, profile, serverTick, humanQiReserve, vitalGu, null);
+    }
+
+    /** Start that also freezes the calamity profile (CANON-007 ten-extremes route). */
+    public synchronized AscensionRecord start(ApertureKey key, boolean verifiedFivePeak,
+                                              Optional<RuleProfile> profile, long serverTick,
+                                              double humanQiReserve, AscensionProgress.VitalGu vitalGu,
+                                              TribulationParameters.Profile frozenTribulationProfile) throws IOException {
         AscensionRecord record = service.start(key, verifiedFivePeak, profile, serverTick,
-                humanQiReserve, vitalGu);
+                humanQiReserve, vitalGu, frozenTribulationProfile);
         cache.put(key, record);
         return record;
     }
@@ -137,6 +145,14 @@ public final class SessionStore {
                                                        double trueEssenceTarget) throws IOException {
         AscensionRecord record = service.beginShatter(key, expectedStateRevision, sequence, serverTick,
                 trueEssenceBefore, trueEssenceTarget);
+        cache.put(key, record);
+        return record;
+    }
+
+    /** CANON-007 self-rupture entry: no true-essence shock is recorded for a ten-extremes aperture. */
+    public synchronized AscensionRecord beginSelfRupture(ApertureKey key, long expectedStateRevision,
+                                                          long sequence, long serverTick) throws IOException {
+        AscensionRecord record = service.beginSelfRupture(key, expectedStateRevision, sequence, serverTick);
         cache.put(key, record);
         return record;
     }

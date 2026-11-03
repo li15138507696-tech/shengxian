@@ -61,6 +61,23 @@ public final class AscensionService {
     public AscensionRecord start(ApertureKey key, boolean verifiedFivePeak,
                                  Optional<RuleProfile> profile, long serverTick,
                                  double humanQiReserve, AscensionProgress.VitalGu vitalGu) throws IOException {
+        return start(key, verifiedFivePeak, profile, serverTick, humanQiReserve, vitalGu, null);
+    }
+
+    /**
+     * As above, but freezes the calamity profile at creation when one is supplied.
+     *
+     * <p>CANON-007: ten-extremes calamities are worse, and the trigger is the player's physique
+     * rather than an operator setting. Freezing it at creation persists the choice with the session,
+     * and {@code TribulationEngine} later re-derives its parameters from the frozen value instead of
+     * overwriting it with the configured ordinary profile.</p>
+     *
+     * @param frozenTribulationProfile {@code null} leaves the profile unfrozen as before
+     */
+    public AscensionRecord start(ApertureKey key, boolean verifiedFivePeak,
+                                 Optional<RuleProfile> profile, long serverTick,
+                                 double humanQiReserve, AscensionProgress.VitalGu vitalGu,
+                                 TribulationParameters.Profile frozenTribulationProfile) throws IOException {
         Objects.requireNonNull(key, "key");
         Objects.requireNonNull(profile, "profile");
         Objects.requireNonNull(vitalGu, "vitalGu");
@@ -76,6 +93,9 @@ public final class AscensionService {
         }
         AscensionProgress progress = AscensionProgress.empty(humanQiReserve);
         if (vitalGu.bound()) progress = progress.withVitalGu(vitalGu);
+        if (frozenTribulationProfile != null) {
+            progress = progress.withTribulationProfile(frozenTribulationProfile);
+        }
         AscensionRecord record = new AscensionRecord(AscensionSession.prepare(key, serverTick), progress);
         repository.save(record, -1);
         return record;
@@ -453,6 +473,30 @@ public final class AscensionService {
                 expectedStateRevision, sequence, serverTick);
         AscensionProgress progress = current.progress().withShatterEssenceIntent(
                 session.phaseRevision(), trueEssenceBefore, trueEssenceTarget)
+                .withShatterClock(ShatterClock.start(session.phaseRevision(), serverTick));
+        AscensionRecord next = new AscensionRecord(session, progress);
+        repository.save(next, expectedStateRevision);
+        return next;
+    }
+
+    /**
+     * CANON-007: a ten-extremes aperture ruptures by itself once the gu seal inside the body is
+     * released, so this entry advances to BREAKING without the true-essence shock intent that
+     * {@link #beginShatter} records. Nothing downstream requires that intent, so the irreversible
+     * step keeps its normal durability trail while spending no true essence.
+     */
+    public AscensionRecord beginSelfRupture(ApertureKey key, long expectedStateRevision,
+                                            long sequence, long serverTick) throws IOException {
+        AscensionRecord current = load(key);
+        if (current.session().phase() != Phase.PREPARING) {
+            throw new IOException("Self-rupture can only begin in PREPARING");
+        }
+        if (current.session().phaseRevision() != 0 || !current.progress().shatterEssenceTargetKeys().isEmpty()) {
+            throw new IOException("A shatter attempt has already begun and cannot be restarted");
+        }
+        AscensionSession session = SessionFlow.advance(current.session(), Phase.BREAKING,
+                expectedStateRevision, sequence, serverTick);
+        AscensionProgress progress = current.progress()
                 .withShatterClock(ShatterClock.start(session.phaseRevision(), serverTick));
         AscensionRecord next = new AscensionRecord(session, progress);
         repository.save(next, expectedStateRevision);

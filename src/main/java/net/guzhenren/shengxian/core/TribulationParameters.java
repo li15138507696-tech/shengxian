@@ -27,6 +27,12 @@ public record TribulationParameters(
          * profile stays an individual case and never a general ordinary-route rule (GAP-001).
          */
         FANG_ZHENG_WITNESSED,
+        /**
+         * CANON-007: "十绝升仙，天灾地劫非常恐怖". The text states the calamities are far worse but
+         * gives no quantities, so this profile is a harsher game mapping chosen by the player's
+         * physique at preparation time — never an operator setting, and never a canon figure.
+         */
+        TEN_EXTREMES,
         /** Compatibility profile retained only for old framework fixtures. */
         LEGACY_TEST_FIXTURE
     }
@@ -67,6 +73,7 @@ public record TribulationParameters(
             case TAI_BAI_WITNESSED -> taiBaiWitnessed();
             case BLACK_LOU_LAN_WITNESSED -> heiLoulanWitnessed();
             case FANG_ZHENG_WITNESSED -> fangZhengWitnessed();
+            case TEN_EXTREMES -> tenExtremes();
             case NOT_FROZEN, LEGACY_TEST_FIXTURE ->
                     throw new IllegalArgumentException("Profile is not selectable in production");
         };
@@ -79,7 +86,9 @@ public record TribulationParameters(
             Profile profile = Profile.valueOf(value);
             return switch (profile) {
                 case UNRESOLVED_ORDINARY, TAI_BAI_WITNESSED, BLACK_LOU_LAN_WITNESSED, FANG_ZHENG_WITNESSED -> profile;
-                case NOT_FROZEN, LEGACY_TEST_FIXTURE -> Profile.UNRESOLVED_ORDINARY;
+                // Physique-driven, so an operator cannot select it by name; an operator typing it
+                // falls back to the inert profile instead of silently changing a route's difficulty.
+                case TEN_EXTREMES, NOT_FROZEN, LEGACY_TEST_FIXTURE -> Profile.UNRESOLVED_ORDINARY;
             };
         } catch (IllegalArgumentException ex) {
             return Profile.UNRESOLVED_ORDINARY;
@@ -103,5 +112,15 @@ public record TribulationParameters(
     public static TribulationParameters fangZhengWitnessed() {
         return new TribulationParameters(60.0, 8, 20, 3, 40, 2.0,
                 Profile.FANG_ZHENG_WITNESSED);
+    }
+
+    /**
+     * CANON-007 ten-extremes calamities. The text only says they are far more terrifying and gives
+     * no quantities, so every number here is a game mapping deliberately harsher than
+     * {@link #standard()}: the ambient threshold is lower (the calamity forms sooner), there are
+     * more carriers, they strike on shorter intervals, and each impact is riskier.
+     */
+    public static TribulationParameters tenExtremes() {
+        return new TribulationParameters(45.0, 12, 15, 5, 30, 3.0, Profile.TEN_EXTREMES);
     }
 }

@@ -49,6 +49,7 @@ import net.guzhenren.shengxian.core.GuBacklashState;
 import net.guzhenren.shengxian.core.GuBacklashTargetLocator;
 import net.guzhenren.shengxian.core.KillerMoveDurabilityChanges;
 import net.guzhenren.shengxian.core.OrdinaryQualification;
+import net.guzhenren.shengxian.core.TenExtremesQualification;
 import net.guzhenren.shengxian.core.Phase;
 import net.guzhenren.shengxian.core.QiEngine;
 import net.guzhenren.shengxian.core.QiIntent;
@@ -339,6 +340,74 @@ public final class FrameworkTest {
           expect(IOException.class,
                 () -> service.start(afterReload, true, Optional.of(profile), 20L));
           check(new FileSessionRepository(dir).find(afterReload).isEmpty());
+       });
+       test("ten extremes route ruptures the aperture without a true-essence shock", () -> {
+          // CANON-007: an ordinary aperture must be shocked with true essence; a ten-extremes
+          // aperture breaks by itself once the gu seal inside the body is released. The routes stay
+          // disjoint: the ordinary predicate must keep rejecting ten-extremes bodies.
+          check(TenExtremesQualification.fivePeak(5.0, 4.0, false, true, false));
+          check(TenExtremesQualification.fivePeak(5.0, 5.0, true, true, false));
+          check(!TenExtremesQualification.fivePeak(5.0, 4.0, false, false, false));
+          check(!TenExtremesQualification.fivePeak(5.0, 4.0, false, true, true));
+          check(!TenExtremesQualification.fivePeak(4.0, 4.0, false, true, false));
+          check(!OrdinaryQualification.fivePeak(5.0, 4.0, false, true, false));
+          check(RuleProfile.ordinary().capabilities().equals(RuleProfile.tenExtremes().capabilities()));
+          check(!"ordinary-five-to-six".equals(RuleProfile.tenExtremes().id()));
+
+          Path dir = Files.createTempDirectory("shengxian-ten-extremes-");
+          AscensionService service = new AscensionService(new FileSessionRepository(dir), ALL);
+          ApertureKey key = new ApertureKey(OWNER, "ten-extremes");
+          AscensionRecord prepared = service.start(key, true,
+                Optional.of(RuleProfile.tenExtremes()), 100L);
+          check(prepared.session().phase() == Phase.PREPARING);
+
+          AscensionRecord ruptured = service.beginSelfRupture(key,
+                prepared.session().stateRevision(), 1L, 200L);
+          check(ruptured.session().phase() == Phase.BREAKING);
+          // No true-essence shock may be recorded, and the irreversible step still gets its clock.
+          check(ruptured.progress().shatterEssenceTargetKeys().isEmpty());
+          check(ruptured.progress().shatterEssenceTarget(ruptured.session().phaseRevision()).isEmpty());
+          check(ruptured.progress().shatterClock(ruptured.session().phaseRevision()).isPresent());
+          check(new FileSessionRepository(dir).find(key).orElseThrow().progress()
+                .shatterEssenceTargetKeys().isEmpty());
+          // A second rupture is refused once the irreversible attempt exists.
+          expect(IOException.class, () -> service.beginSelfRupture(key,
+                ruptured.session().stateRevision(), 2L, 300L));
+
+          // Contrast: the ordinary entry still spends true essence and records the intent.
+          ApertureKey ordinaryKey = new ApertureKey(OWNER, "ordinary-shock");
+          AscensionRecord ordinaryPrepared = service.start(ordinaryKey, true,
+                Optional.of(RuleProfile.ordinary()), 100L);
+          AscensionRecord shocked = service.beginShatter(ordinaryKey,
+                ordinaryPrepared.session().stateRevision(), 1L, 200L, 10.0, 9.0);
+          check(shocked.session().phase() == Phase.BREAKING);
+          check(!shocked.progress().shatterEssenceTargetKeys().isEmpty());
+       });
+       test("ten extremes calamities are strictly harsher and not operator-selectable", () -> {
+          // CANON-007 only says the calamities are far worse and states no numbers, so the contract
+          // worth pinning is "strictly harsher than the ordinary profile", not any specific value.
+          TribulationParameters standard = TribulationParameters.standard();
+          TribulationParameters harsh = TribulationParameters.forProfile(
+                TribulationParameters.Profile.TEN_EXTREMES);
+          check(harsh.profile() == TribulationParameters.Profile.TEN_EXTREMES);
+          check(harsh.triggerAmbientTotal() < standard.triggerAmbientTotal());
+          check(harsh.heavenCarrierUnits() > standard.heavenCarrierUnits());
+          check(harsh.heavenImpactInterval() < standard.heavenImpactInterval());
+          check(harsh.earthCarrierUnits() > standard.earthCarrierUnits());
+          check(harsh.earthImpactInterval() < standard.earthImpactInterval());
+          check(harsh.impactRisk() > standard.impactRisk());
+          // Physique-driven: an operator typing the name must not change any route's difficulty.
+          check(TribulationParameters.configuredProfile("TEN_EXTREMES")
+                == TribulationParameters.Profile.UNRESOLVED_ORDINARY);
+
+          Path dir = Files.createTempDirectory("shengxian-ten-extremes-profile-");
+          AscensionService service = new AscensionService(new FileSessionRepository(dir), ALL);
+          ApertureKey key = new ApertureKey(OWNER, "ten-extremes-profile");
+          service.start(key, true, Optional.of(RuleProfile.tenExtremes()), 100L, 10.0,
+                AscensionProgress.VitalGu.empty(), TribulationParameters.Profile.TEN_EXTREMES);
+          AscensionRecord restored = new FileSessionRepository(dir).find(key).orElseThrow();
+          check(restored.progress().tribulationProfile()
+                == TribulationParameters.Profile.TEN_EXTREMES);
        });
        test("failure recovery requires the complete route and a canonically fatal qi cause", () -> {
          AscensionReadiness.Decision closed = AscensionReadiness.evaluate(Set.of());

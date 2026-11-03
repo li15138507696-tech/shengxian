@@ -51,7 +51,8 @@ public final class TribulationEngine {
             case NOT_FROZEN -> new Result(current, List.of(), false);
             // No individual-case gate: the ambient-qi rule is the same engine for every
             // ascension; the witnessed examples are instances of it, not permissions.
-            case UNRESOLVED_ORDINARY, TAI_BAI_WITNESSED -> startFromAmbientQi(current, serverTick, p);
+            case UNRESOLVED_ORDINARY, TAI_BAI_WITNESSED, TEN_EXTREMES ->
+                    startFromAmbientQi(current, serverTick, p);
             case BLACK_LOU_LAN_WITNESSED -> startHeiLoulan(current, serverTick, p);
             case FANG_ZHENG_WITNESSED -> startFangZheng(current, serverTick, p);
             case LEGACY_TEST_FIXTURE -> startLegacyFixture(current, serverTick, p);
