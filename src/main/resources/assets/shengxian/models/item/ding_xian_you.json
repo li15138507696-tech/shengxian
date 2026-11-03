@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "shengxian:item/ding_xian_you"
+  },
+  "display": {
+    "ground": { "scale": [0.5, 0.5, 0.5] },
+    "head": { "translation": [0, 14, 0] },
+    "fixed": { "rotation": [-90, 0, 0], "scale": [0.55, 0.55, 0.55] }
+  }
+}

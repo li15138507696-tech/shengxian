@@ -1,0 +1,24 @@
+{
+  "parent": "shengxian:ascension/opening",
+  "criteria": {
+    "granted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "description": "本命蛊已融入三气团，仙窍正在定型。点击「形成仙窍」完成结算。",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:beacon"
+    },
+    "title": "升仙·仙窍定型",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "requirements": [
+    [
+      "granted"
+    ]
+  ]
+}

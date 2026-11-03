@@ -1,0 +1,16 @@
+{
+  "jars": [
+    {
+      "identifier": {
+        "group": "foundry.veil",
+        "artifact": "veil-neoforge-1.21.1"
+      },
+      "version": {
+        "range": "[4.5.2,4.6.0)",
+        "artifactVersion": "4.5.2"
+      },
+      "path": "META-INF/jarjar/veil-neoforge-1.21.1-4.5.2.jar",
+      "isObfuscated": false
+    }
+  ]
+}

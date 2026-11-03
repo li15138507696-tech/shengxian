@@ -1,0 +1,7 @@
+/.gradle/
+/.cache/
+/build/
+/local.properties
+*.log
+/logs/
+/素材/

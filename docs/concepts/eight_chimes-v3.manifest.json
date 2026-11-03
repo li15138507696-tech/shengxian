@@ -1,0 +1,24 @@
+{
+  "id": "eight_chimes",
+  "purpose": "AI-generated original design reference; NOT a game screenshot or geo model render",
+  "model": "black-forest-labs/FLUX.1-schnell",
+  "space": "https://black-forest-labs-flux-1-schnell.hf.space",
+  "prompt": "large ancient Chinese L-shaped bronze stone chime hanging ornament, single instrument, isolated dark background, game model reference, not a bell",
+  "seed": 861856,
+  "parameters": {
+    "randomize_seed": false,
+    "width": 768,
+    "height": 768,
+    "num_inference_steps": 4
+  },
+  "created_utc": "2026-11-01T14:17:45.361120+00:00",
+  "visual_review": "not_applicable_no_image",
+  "remote_event": "error",
+  "remote_data": null,
+  "defects": [
+    "No successful image. Remote failure reason is unknown unless the error explicitly names quota or authentication. No automatic retry."
+  ],
+  "event_id": "9d1b5a8702124f3bab735963d4894a1f",
+  "status": "stopped_remote_failure",
+  "error": "Remote error: None"
+}

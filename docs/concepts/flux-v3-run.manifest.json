@@ -1,0 +1,30 @@
+{
+  "purpose": "AI concept references, not game screenshots or geo renders",
+  "model": "black-forest-labs/FLUX.1-schnell",
+  "status": "final_partial_stopped_after_authorized_single_low_load_attempt",
+  "policy": "Lead authorized exactly one new eight_chimes attempt at 768x768, 4 steps; continue with ancient_beast and blood_core only if it succeeds. It failed, so no further calls were made.",
+  "retained_images": [
+    "horned_tiger-v2.webp",
+    "jade_willow-v2.webp"
+  ],
+  "new_attempt": {
+    "id": "eight_chimes",
+    "manifest": "eight_chimes-v3.manifest.json",
+    "event_id": "9d1b5a8702124f3bab735963d4894a1f",
+    "remote_event": "error",
+    "remote_data": null,
+    "result": "terminal_failure_no_image",
+    "cause": "unknown; quota/authentication not established"
+  },
+  "not_requested": [
+    "ancient_beast",
+    "blood_core"
+  ],
+  "preserved_prior_failure": "eight_chimes-v2.manifest.json",
+  "review_limitations": [
+    "Tiger has exactly one central forehead horn; horn tip touches left boundary and armor reads as forged plate rather than dark-gold rock.",
+    "Willow has clear hollow wind eye and hanging foliage; ring is highly regular and jade-like while trunk reads as wood."
+  ],
+  "total_successful_new_images": 2,
+  "total_remote_attempts": 4
+}

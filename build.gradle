@@ -1,0 +1,40 @@
+plugins { id 'java' }
+
+group = 'net.guzhenren.shengxian'
+version = '0.3.92'
+base { archivesName = 'shengxian' }
+java { toolchain { languageVersion = JavaLanguageVersion.of(21) } }
+
+// Offline fallback: build.ps1 is the supported entry point on this machine.
+// No dependency on the Tianyi project, and no bundled upstream binaries.
+tasks.register('prepareOffline', Exec) {
+    commandLine 'pwsh.exe', '-NoProfile', '-ExecutionPolicy', 'Bypass',
+        '-File', file('build.ps1').absolutePath, '-Action', 'Prepare'
+}
+sourceSets.main.compileClasspath = files(providers.provider {
+    def index = file('build/offline-classpath.txt')
+    index.isFile() ? index.readLines('UTF-8').findAll { !it.isBlank() } : []
+})
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
+    options.compilerArgs += ['-proc:none']
+    // Use javac directly: Gradle's worker launcher misreads its UTF-8 classpath
+    // argument file when its Windows cache path contains Chinese characters.
+    options.fork = true
+    options.forkOptions.executable = file(
+        (findProperty('shengxianJdk') ?: 'C:/Users/ADMIN/.jdks/temurin-21') + '/bin/javac.exe'
+    ).absolutePath
+}
+tasks.named('compileJava') { dependsOn 'prepareOffline' }
+tasks.register('frameworkTest', JavaExec) {
+    dependsOn 'testClasses'
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'net.guzhenren.shengxian.FrameworkTest'
+    javaLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) }
+}
+tasks.named('test') { dependsOn 'frameworkTest' }
+tasks.named('jar') {
+    manifest { attributes 'Implementation-Version': project.version }
+    doLast { println "Framework artifact: ${archiveFile.get().asFile}" }
+}

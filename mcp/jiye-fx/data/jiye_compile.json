@@ -1,0 +1,496 @@
+{
+ "note": "几页 122 个 program 在 OpenGL 4.6（GLSL 330 core）上的真实编译结果。false = 直接拷进升仙会编译失败，需按 error 修。",
+ "total": 122,
+ "ok": 122,
+ "fail": 0,
+ "results": {
+  "aperture_manifestation": {
+   "ok": true,
+   "error": ""
+  },
+  "aperture_portal": {
+   "ok": true,
+   "error": ""
+  },
+  "aperture_sky": {
+   "ok": true,
+   "error": ""
+  },
+  "aperture_world_core": {
+   "ok": true,
+   "error": ""
+  },
+  "aperture_world_edge": {
+   "ok": true,
+   "error": ""
+  },
+  "aperture_world_shell": {
+   "ok": true,
+   "error": ""
+  },
+  "baohuangtian_mirror": {
+   "ok": true,
+   "error": ""
+  },
+  "baohuangtian_sky": {
+   "ok": true,
+   "error": ""
+  },
+  "baohuangtian_treasure": {
+   "ok": true,
+   "error": ""
+  },
+  "black_heaven_post": {
+   "ok": true,
+   "error": ""
+  },
+  "black_heaven_sky": {
+   "ok": true,
+   "error": ""
+  },
+  "blue_heaven_post": {
+   "ok": true,
+   "error": ""
+  },
+  "blue_heaven_sky": {
+   "ok": true,
+   "error": ""
+  },
+  "chi_tong_fire": {
+   "ok": true,
+   "error": ""
+  },
+  "corrosive_dark_current_impact": {
+   "ok": true,
+   "error": ""
+  },
+  "corrosive_dark_current_portal": {
+   "ok": true,
+   "error": ""
+  },
+  "corrosive_dark_current_post": {
+   "ok": true,
+   "error": ""
+  },
+  "corrosive_dark_current_residue": {
+   "ok": true,
+   "error": ""
+  },
+  "corrosive_dark_current_skull": {
+   "ok": true,
+   "error": ""
+  },
+  "corrosive_dark_current_skull_bone": {
+   "ok": true,
+   "error": ""
+  },
+  "corrosive_dark_current_skull_fog": {
+   "ok": true,
+   "error": ""
+  },
+  "corrosive_dark_current_skull_void": {
+   "ok": true,
+   "error": ""
+  },
+  "corrosive_dark_current_stream": {
+   "ok": true,
+   "error": ""
+  },
+  "corrosive_dark_current_stream_core": {
+   "ok": true,
+   "error": ""
+  },
+  "corrosive_dark_current_stream_edge": {
+   "ok": true,
+   "error": ""
+  },
+  "corrosive_dark_current_stream_tip": {
+   "ok": true,
+   "error": ""
+  },
+  "cyan_heaven_post": {
+   "ok": true,
+   "error": ""
+  },
+  "cyan_heaven_sky": {
+   "ok": true,
+   "error": ""
+  },
+  "dan_dao_slash": {
+   "ok": true,
+   "error": ""
+  },
+  "datong_wind_boundary": {
+   "ok": true,
+   "error": ""
+  },
+  "datong_wind_core": {
+   "ok": true,
+   "error": ""
+  },
+  "datong_wind_erosion": {
+   "ok": true,
+   "error": ""
+  },
+  "datong_wind_post": {
+   "ok": true,
+   "error": ""
+  },
+  "delight_in_mountain_and_water": {
+   "ok": true,
+   "error": ""
+  },
+  "di_xian_impact": {
+   "ok": true,
+   "error": ""
+  },
+  "di_xian_post": {
+   "ok": true,
+   "error": ""
+  },
+  "di_xian_pressure": {
+   "ok": true,
+   "error": ""
+  },
+  "di_xian_surface": {
+   "ok": true,
+   "error": ""
+  },
+  "di_xian_vine_bloom": {
+   "ok": true,
+   "error": ""
+  },
+  "di_xian_vine_surface": {
+   "ok": true,
+   "error": ""
+  },
+  "fan_wind_composite": {
+   "ok": true,
+   "error": ""
+  },
+  "fan_wind_field": {
+   "ok": true,
+   "error": ""
+  },
+  "formless_hand_aura": {
+   "ok": true,
+   "error": ""
+  },
+  "formless_hand_volume": {
+   "ok": true,
+   "error": ""
+  },
+  "four_flame_cloud": {
+   "ok": true,
+   "error": ""
+  },
+  "fu_ren_xin_mist": {
+   "ok": true,
+   "error": ""
+  },
+  "green_heaven_post": {
+   "ok": true,
+   "error": ""
+  },
+  "green_heaven_sky": {
+   "ok": true,
+   "error": ""
+  },
+  "hua_qi_composite": {
+   "ok": true,
+   "error": ""
+  },
+  "hua_qi_field": {
+   "ok": true,
+   "error": ""
+  },
+  "immortal_gu_item_aura": {
+   "ok": true,
+   "error": ""
+  },
+  "immortal_refinement": {
+   "ok": true,
+   "error": ""
+  },
+  "ink_mote": {
+   "ok": true,
+   "error": ""
+  },
+  "ink_ribbon": {
+   "ok": true,
+   "error": ""
+  },
+  "ink_ribbon_bloom": {
+   "ok": true,
+   "error": ""
+  },
+  "iron_wall_bell": {
+   "ok": true,
+   "error": ""
+  },
+  "iron_wall_composite": {
+   "ok": true,
+   "error": ""
+  },
+  "iron_wall_field": {
+   "ok": true,
+   "error": ""
+  },
+  "lang_jian_slash": {
+   "ok": true,
+   "error": ""
+  },
+  "lang_jian_wave": {
+   "ok": true,
+   "error": ""
+  },
+  "lei_yi_wing": {
+   "ok": true,
+   "error": ""
+  },
+  "liu_feng_impact": {
+   "ok": true,
+   "error": ""
+  },
+  "liu_feng_post": {
+   "ok": true,
+   "error": ""
+  },
+  "liu_feng_surface": {
+   "ok": true,
+   "error": ""
+  },
+  "liu_feng_vein": {
+   "ok": true,
+   "error": ""
+  },
+  "man_as_before_apparition": {
+   "ok": true,
+   "error": ""
+  },
+  "man_as_before_rewind": {
+   "ok": true,
+   "error": ""
+  },
+  "menstrual_blood_curtain": {
+   "ok": true,
+   "error": ""
+  },
+  "menstrual_blood_loss": {
+   "ok": true,
+   "error": ""
+  },
+  "mud_summoning_crab_fallback": {
+   "ok": true,
+   "error": ""
+  },
+  "mud_summoning_crab_material": {
+   "ok": true,
+   "error": ""
+  },
+  "nine_heavens_transition": {
+   "ok": true,
+   "error": ""
+  },
+  "orange_heaven_post": {
+   "ok": true,
+   "error": ""
+  },
+  "orange_heaven_sky": {
+   "ok": true,
+   "error": ""
+  },
+  "piercing_rain": {
+   "ok": true,
+   "error": ""
+  },
+  "purple_heaven_post": {
+   "ok": true,
+   "error": ""
+  },
+  "purple_heaven_sky": {
+   "ok": true,
+   "error": ""
+  },
+  "qi_wash": {
+   "ok": true,
+   "error": ""
+  },
+  "red_heaven_post": {
+   "ok": true,
+   "error": ""
+  },
+  "red_heaven_sky": {
+   "ok": true,
+   "error": ""
+  },
+  "sky_vortex": {
+   "ok": true,
+   "error": ""
+  },
+  "sky_vortex_bloom": {
+   "ok": true,
+   "error": ""
+  },
+  "spring_autumn_cicada_composite": {
+   "ok": true,
+   "error": ""
+  },
+  "spring_autumn_cicada_trail": {
+   "ok": true,
+   "error": ""
+  },
+  "spring_autumn_time_river": {
+   "ok": true,
+   "error": ""
+  },
+  "star_flow": {
+   "ok": true,
+   "error": ""
+  },
+  "star_flow_post": {
+   "ok": true,
+   "error": ""
+  },
+  "sword_jiaolong_fallback": {
+   "ok": true,
+   "error": ""
+  },
+  "sword_jiaolong_material": {
+   "ok": true,
+   "error": ""
+  },
+  "taiqing_empty_space": {
+   "ok": true,
+   "error": ""
+  },
+  "taiqing_empty_space_post": {
+   "ok": true,
+   "error": ""
+  },
+  "tianyuan_baohuang_lian": {
+   "ok": true,
+   "error": ""
+  },
+  "tou_sheng_domain": {
+   "ok": true,
+   "error": ""
+  },
+  "tribulation_lightning": {
+   "ok": true,
+   "error": ""
+  },
+  "wander_world_aura": {
+   "ok": true,
+   "error": ""
+  },
+  "wander_world_mirror_art": {
+   "ok": true,
+   "error": ""
+  },
+  "wander_world_trail_art": {
+   "ok": true,
+   "error": ""
+  },
+  "wander_world_volume": {
+   "ok": true,
+   "error": ""
+  },
+  "wander_world_volume_glint": {
+   "ok": true,
+   "error": ""
+  },
+  "wander_world_water": {
+   "ok": true,
+   "error": ""
+  },
+  "wander_world_wave_composite": {
+   "ok": true,
+   "error": ""
+  },
+  "wander_world_wave_fallback": {
+   "ok": true,
+   "error": ""
+  },
+  "wander_world_wave_field": {
+   "ok": true,
+   "error": ""
+  },
+  "water_clothing_aura": {
+   "ok": true,
+   "error": ""
+  },
+  "water_clothing_ornament": {
+   "ok": true,
+   "error": ""
+  },
+  "water_clothing_shell": {
+   "ok": true,
+   "error": ""
+  },
+  "water_clothing_silk": {
+   "ok": true,
+   "error": ""
+  },
+  "water_clothing_transform": {
+   "ok": true,
+   "error": ""
+  },
+  "water_enclosure": {
+   "ok": true,
+   "error": ""
+  },
+  "white_heaven_post": {
+   "ok": true,
+   "error": ""
+  },
+  "white_heaven_sky": {
+   "ok": true,
+   "error": ""
+  },
+  "wind_flower": {
+   "ok": true,
+   "error": ""
+  },
+  "wind_flower_surface": {
+   "ok": true,
+   "error": ""
+  },
+  "wind_flower_wind": {
+   "ok": true,
+   "error": ""
+  },
+  "wind_thunder_cage": {
+   "ok": true,
+   "error": ""
+  },
+  "wind_thunder_storm": {
+   "ok": true,
+   "error": ""
+  },
+  "xing_mou_eye": {
+   "ok": true,
+   "error": ""
+  },
+  "yellow_heaven_post": {
+   "ok": true,
+   "error": ""
+  },
+  "yellow_heaven_sky": {
+   "ok": true,
+   "error": ""
+  },
+  "zheng_tiger_atmosphere": {
+   "ok": true,
+   "error": ""
+  },
+  "zheng_tiger_stone": {
+   "ok": true,
+   "error": ""
+  },
+  "zheng_tiger_vein": {
+   "ok": true,
+   "error": ""
+  }
+ }
+}

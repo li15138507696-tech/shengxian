@@ -1,0 +1,24 @@
+{
+  "parent": "shengxian:ascension/root",
+  "criteria": {
+    "granted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "description": "窍壁已彻底碎裂，升仙不可逆。冲击消耗了真元，天地二气开始涌入空窍。",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:cracked_stone_bricks"
+    },
+    "title": "升仙·碎窍",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "requirements": [
+    [
+      "granted"
+    ]
+  ]
+}

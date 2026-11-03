@@ -1,0 +1,40 @@
+{
+  "purpose": "AI concept references, not game screenshots or geo renders",
+  "model": "black-forest-labs/FLUX.1-schnell",
+  "space": "https://black-forest-labs-flux-1-schnell.hf.space",
+  "status": "partial_stopped_remote_error",
+  "request_policy": "Sequential GPU calls; no automatic retries, no keys, installs, weights or payments",
+  "results": [
+    {
+      "id": "horned_tiger",
+      "status": "reviewed_with_defects",
+      "manifest": "horned_tiger-v2.manifest.json",
+      "image": "horned_tiger-v2.webp"
+    },
+    {
+      "id": "jade_willow",
+      "status": "reviewed_with_defects",
+      "manifest": "jade_willow-v2.manifest.json",
+      "image": "jade_willow-v2.webp"
+    },
+    {
+      "id": "eight_chimes",
+      "status": "remote_error_null",
+      "manifest": "eight_chimes-v2.manifest.json",
+      "image": null
+    },
+    {
+      "id": "ancient_beast",
+      "status": "not_requested_after_remote_failure",
+      "seed": 862049,
+      "image": null
+    },
+    {
+      "id": "blood_core",
+      "status": "not_requested_after_remote_failure",
+      "seed": 862242,
+      "image": null
+    }
+  ],
+  "limitation": "Remote SSE error supplied null; quota/authentication failure has not been established. Existing horned-tiger-flux.webp was preserved."
+}

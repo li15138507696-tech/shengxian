@@ -1,0 +1,66 @@
+{
+  "format": "NEW_ENTITY",
+  "mode": "QUADS",
+  "bufferSize": "TRANSIENT",
+  "sort": true,
+  "layers": [
+    [
+      {
+        "type": "veil:shader",
+        "name": "shengxian:ascension_sanqi_converge"
+      },
+      {
+        "type": "minecraft:lightmap"
+      },
+      {
+        "type": "minecraft:overlay"
+      },
+      {
+        "type": "minecraft:depth_test",
+        "mode": "lequal"
+      },
+      {
+        "type": "minecraft:cull",
+        "face": "none"
+      },
+      {
+        "type": "minecraft:write_mask",
+        "color": true,
+        "depth": false
+      },
+      {
+        "type": "minecraft:transparency",
+        "mode": "translucent"
+      }
+    ],
+    [
+      {
+        "type": "veil:shader",
+        "name": "shengxian:ascension_sanqi_converge"
+      },
+      {
+        "type": "minecraft:depth_test",
+        "mode": "lequal"
+      },
+      {
+        "type": "minecraft:cull",
+        "face": "none"
+      },
+      {
+        "type": "minecraft:write_mask",
+        "color": true,
+        "depth": false
+      },
+      {
+        "type": "minecraft:transparency",
+        "mode": "additive"
+      },
+      {
+        "type": "minecraft:output",
+        "framebuffer": "veil:bloom"
+      }
+    ]
+  ],
+  "affectsCrumbling": false,
+  "outline": false
+}

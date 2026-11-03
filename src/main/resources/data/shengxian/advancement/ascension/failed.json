@@ -1,0 +1,24 @@
+{
+  "parent": "shengxian:ascension/root",
+  "criteria": {
+    "granted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "description": "升仙失败，空窍已毁。查看结算记录，另寻他路。",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:dead_bush"
+    },
+    "title": "升仙·道消",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "requirements": [
+    [
+      "granted"
+    ]
+  ]
+}

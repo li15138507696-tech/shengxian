@@ -1,0 +1,8 @@
+This mod distribution embeds the unmodified Veil 4.5.2 NeoForge mod for Minecraft 1.21.1.
+
+Veil is Copyright (c) its authors and is licensed under GNU LGPL version 3.0.
+The original Veil JAR is at META-INF/jarjar/veil-neoforge-1.21.1-4.5.2.jar.
+Its license text is included in that JAR as LICENSE_Veil.
+
+Veil source and release: https://github.com/FoundryMC/Veil/tree/mc1.21.1-4.5.2-neoforge
+This notice and Veil's license apply to Veil only; they do not change the license of shengxian code.

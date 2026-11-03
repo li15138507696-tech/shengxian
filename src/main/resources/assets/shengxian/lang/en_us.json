@@ -1,0 +1,12 @@
+{
+  "key.categories.shengxian": "Shengxian",
+  "key.shengxian.qi": "Open Three Qi Control",
+  "screen.shengxian.qi": "Three Qi Control",
+  "item.shengxian.ding_xian_you": "Fixed Immortal Travel",
+  "item.shengxian.ren_ru_gu_immortal": "Man as Before Immortal Gu",
+  "item.shengxian.jiang_shan_ru_gu": "Landscape as Before",
+  "tooltip.shengxian.ding_xian_you": "Hold use to travel; sneak-use air to cycle 8 marks, sneak-use a block to mark your feet",
+  "tooltip.shengxian.ren_ru_gu_immortal": "Use to restore recent injuries; sneak-use to treat a visible player",
+  "tooltip.shengxian.jiang_shan_ru_gu": "Use to restore your aperture; sneak-use toggles recording (off by default, recorded terrain explosions drop no items)",
+  "tooltip.shengxian.immortal_gu_binding": "Bound to your current immortal session; uses green grape essence and remains reusable"
+}

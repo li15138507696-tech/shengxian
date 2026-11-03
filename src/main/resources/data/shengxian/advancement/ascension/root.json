@@ -1,0 +1,24 @@
+{
+  "criteria": {
+    "granted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "background": "minecraft:textures/gui/advancements/backgrounds/end.png",
+    "description": "备妥升仙仪轨：普通路线（五转四至五阶段、未失窍、不是十绝体），并让背包里的本命蛊与本体镜像一致。",
+    "icon": {
+      "count": 1,
+      "id": "shengxian:ding_xian_you"
+    },
+    "title": "升仙·备妥",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "requirements": [
+    [
+      "granted"
+    ]
+  ]
+}

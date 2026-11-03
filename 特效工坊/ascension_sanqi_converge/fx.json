@@ -1,0 +1,23 @@
+{
+  "spec": {
+    "name": "ascension_sanqi_converge",
+    "family": "ascension_sanqi_converge",
+    "modid": "shengxian",
+    "kind": "entity_aura",
+    "target": "veil",
+    "colors": {
+      "primary": "#75cdb9",
+      "secondary": "#e3c97a",
+      "accent": "#d77d7d"
+    },
+    "stage": "after_level",
+    "priority": 1210,
+    "bloom": true,
+    "javaPackage": "net.guzhenren.shengxian.client.fx",
+    "uniforms": [],
+    "title": "ascension_sanqi_converge",
+    "notes": "顶点色区分淡金天元气、青绿地气、赤霞人气与玉色仙窍壳；仅 VeilRenderTime 由 Veil 提供。"
+  },
+  "generatedBy": "jiye-fx@1.0.0",
+  "fileCount": 6
+}

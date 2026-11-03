@@ -1,0 +1,24 @@
+{
+  "id": "eight_chimes",
+  "purpose": "AI-generated original design reference; NOT a game screenshot or geo model render",
+  "model": "black-forest-labs/FLUX.1-schnell",
+  "space": "https://black-forest-labs-flux-1-schnell.hf.space",
+  "prompt": "Original Chinese xianxia heavenly calamity creature design, one isolated subject, full body completely in frame, three-quarter view, readable silhouette, dark neutral grey studio background, detailed hand-painted game art modeling reference, dark stone, weathered bronze, jade and blood materials, restrained glowing accents, no scenery, no text, no logos. A floating ancient Chinese ritual L-SHAPED BRONZE QING CHIME instrument calamity. One monumental angular upside-down L-shaped flat thick bronze percussion slab, an unmistakable bent L / boomerang silhouette with two unequal straight arms and sharp elbow, suspended by dark jade cord from a small floating stone crossbar; seven smaller angular L-shaped bronze chime slabs orbit it. Cast taotie relief, patina green corrosion, gold worn edges, jade sound energy. Open air on both sides of flat slab. This is a Chinese qing lithophone: NOT a bell, NOT a round dome, NO bell cup, no mouth opening, no tower.",
+  "seed": 861856,
+  "parameters": {
+    "randomize_seed": false,
+    "width": 1024,
+    "height": 1024,
+    "num_inference_steps": 4
+  },
+  "created_utc": "2026-11-01T14:14:02.355758+00:00",
+  "visual_review": "not_applicable_no_image",
+  "remote_event": "error",
+  "remote_data": null,
+  "defects": [
+    "No successful image. SSE returned event:error and data:null; reason unknown. Quota/authentication failure is not established. No automatic retry."
+  ],
+  "event_id": "5cd0d3288a58422c9829545a65ecd00e",
+  "status": "stopped_remote_failure",
+  "error": "Remote error: None"
+}

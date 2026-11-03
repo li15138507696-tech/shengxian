@@ -1,0 +1,6 @@
+{
+  "renderStage": "after_level",
+  "priority": 1200,
+  "stages": [{ "type": "veil:blit", "shader": "shengxian:ascension_flow_post",
+    "in": "minecraft:main", "out": "veil:post", "clear": true }]
+}

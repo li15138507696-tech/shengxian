@@ -1,0 +1,74 @@
+{
+  "note": "Offline model previews, not in-game screenshots. Rest bone rotation plus interpolated numeric animation rotation; orthographic z-buffer rasterization samples original box-UV atlas faces.",
+  "models": [
+    {
+      "id": "horned_tiger",
+      "bones": 25,
+      "cubes": 77,
+      "animations": [
+        "animation.horned_tiger.idle",
+        "animation.horned_tiger.walk",
+        "animation.horned_tiger.charge",
+        "animation.horned_tiger.attack",
+        "animation.horned_tiger.hurt",
+        "animation.horned_tiger.death"
+      ],
+      "validation": "JSON + root/parent + cycle traversal + UV bounds + numeric keyframes passed"
+    },
+    {
+      "id": "ancient_beast",
+      "bones": 26,
+      "cubes": 90,
+      "animations": [
+        "animation.ancient_beast.idle",
+        "animation.ancient_beast.walk",
+        "animation.ancient_beast.charge",
+        "animation.ancient_beast.attack",
+        "animation.ancient_beast.hurt",
+        "animation.ancient_beast.death"
+      ],
+      "validation": "JSON + root/parent + cycle traversal + UV bounds + numeric keyframes passed"
+    },
+    {
+      "id": "jade_willow",
+      "bones": 47,
+      "cubes": 96,
+      "animations": [
+        "animation.jade_willow.idle",
+        "animation.jade_willow.charge",
+        "animation.jade_willow.attack",
+        "animation.jade_willow.hurt",
+        "animation.jade_willow.death"
+      ],
+      "validation": "JSON + root/parent + cycle traversal + UV bounds + numeric keyframes passed"
+    },
+    {
+      "id": "eight_chimes",
+      "bones": 17,
+      "cubes": 85,
+      "animations": [
+        "animation.eight_chimes.idle",
+        "animation.eight_chimes.charge",
+        "animation.eight_chimes.attack",
+        "animation.eight_chimes.hurt",
+        "animation.eight_chimes.death"
+      ],
+      "validation": "JSON + root/parent + cycle traversal + UV bounds + numeric keyframes passed"
+    },
+    {
+      "id": "blood_core",
+      "bones": 24,
+      "cubes": 84,
+      "animations": [
+        "animation.blood_core.idle",
+        "animation.blood_core.charge",
+        "animation.blood_core.attack",
+        "animation.blood_core.hurt",
+        "animation.blood_core.death"
+      ],
+      "validation": "JSON + root/parent + cycle traversal + UV bounds + numeric keyframes passed"
+    }
+  ],
+  "gif_frames": 30,
+  "gif_seconds": 3
+}

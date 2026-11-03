@@ -1,0 +1,56 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "shengxian: All Rights Reserved; bundled Veil 4.5.2: LGPL-3.0"
+
+[[mods]]
+modId = "shengxian"
+version = "0.3.92"
+displayName = "蛊真人·升仙框架"
+authors = "shengxian"
+description = '''
+独立升仙框架：当前封闭升仙入口，保留会话、仙窍空间与 Veil 三气原型。
+待补齐本体空窍写入、原著灾劫载体与失败结算后再开放。
+诊断命令：/shengxian status
+'''
+
+[[mixins]]
+config = "shengxian.common.mixins.json"
+
+[[dependencies.shengxian]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1.232,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.shengxian]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1]"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.shengxian]]
+modId = "guzhenren"
+type = "required"
+versionRange = "[0.1]"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.shengxian]]
+modId = "veil"
+type = "required"
+versionRange = "[4.5.2,4.6.0)"
+ordering = "AFTER"
+side = "CLIENT"
+referralUrl = "https://github.com/FoundryMC/Veil/releases"
+
+# 灾劫特效工坊（可选）：装了 Photon 就用它的粒子发射器演出灾劫特效；
+# 没装则回退到服务端的原版粒子编排，功能不受影响。
+[[dependencies.shengxian]]
+modId = "photon"
+type = "optional"
+versionRange = "[2.2.6,2.3.0)"
+ordering = "AFTER"
+side = "CLIENT"
+referralUrl = "https://modrinth.com/mod/photon-editor"

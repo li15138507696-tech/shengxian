@@ -1,0 +1,24 @@
+{
+  "parent": "shengxian:ascension/forming",
+  "criteria": {
+    "granted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "description": "仙窍已成，你不再是人，而是蛊仙。此后可催动属于自己的仙蛊。",
+    "icon": {
+      "count": 1,
+      "id": "shengxian:ren_ru_gu_immortal"
+    },
+    "title": "升仙·成仙",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "requirements": [
+    [
+      "granted"
+    ]
+  ]
+}

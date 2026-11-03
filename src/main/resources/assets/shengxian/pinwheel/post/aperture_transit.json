@@ -1,0 +1,10 @@
+{
+  "stages": [
+    {
+      "type": "veil:blit",
+      "shader": "shengxian:aperture_transit",
+      "in": "minecraft:main"
+    }
+  ],
+  "renderStage": "after_level"
+}

@@ -1,0 +1,24 @@
+{
+  "parent": "shengxian:ascension/immortal",
+  "criteria": {
+    "granted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "description": "首次成功催动一只绑定本人仙窍的仙蛊。",
+    "icon": {
+      "count": 1,
+      "id": "shengxian:jiang_shan_ru_gu"
+    },
+    "title": "仙蛊初鸣",
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "requirements": [
+    [
+      "granted"
+    ]
+  ]
+}

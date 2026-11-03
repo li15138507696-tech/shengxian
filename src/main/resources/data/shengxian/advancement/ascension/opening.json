@@ -1,0 +1,24 @@
+{
+  "parent": "shengxian:ascension/absorb",
+  "criteria": {
+    "granted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "description": "三气已达稳定交感，可以开窍了。此时投入本命蛊，仙窍才会真正定型。",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:ender_eye"
+    },
+    "title": "升仙·开窍",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "requirements": [
+    [
+      "granted"
+    ]
+  ]
+}

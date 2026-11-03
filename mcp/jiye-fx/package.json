@@ -1,0 +1,16 @@
+{
+  "name": "jiye-fx",
+  "version": "1.2.0",
+  "private": true,
+  "type": "module",
+  "description": "几页特效工坊 MCP —— Veil/Photon 特效链路生成、校验与调用代码",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node test/smoke.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "zod": "^3.25.76"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "minVersion": "0.8.7",
+  "package": "net.guzhenren.shengxian.mixin.common",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "YueGuangGuProcedureMixin",
+    "BaiXiangSheGuProcedureMixin",
+    "AiBieChiProcedureMixin",
+    "DingGu2ProcedureMixin",
+    "SanZhaoAnJianCProcedureMixin",
+    "SanZhaoAnJianVProcedureMixin",
+    "SanZhaoAnJianXProcedureMixin",
+    "SanZhaoAnJianZProcedureMixin",
+    "LandscapeExplosionMixin",
+    "LandscapeBlockChangeMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

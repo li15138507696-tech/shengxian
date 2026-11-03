@@ -1,0 +1,28 @@
+{
+  "id": "jade_willow",
+  "purpose": "AI-generated original design reference; NOT a game screenshot or geo model render",
+  "model": "black-forest-labs/FLUX.1-schnell",
+  "space": "https://black-forest-labs-flux-1-schnell.hf.space",
+  "prompt": "Original Chinese xianxia heavenly calamity creature design, one isolated subject, full body completely in frame, three-quarter view, readable silhouette, dark neutral grey studio background, detailed hand-painted game art modeling reference, dark stone, weathered bronze, jade and blood materials, restrained glowing accents, no scenery, no text, no logos. An uncanny living JADE WILLOW TREE calamity, a thick hollow curved jade trunk enclosing a very obvious circular EMPTY WIND EYE open hole through its center, with swirling pale green wind ribbons visible through the hollow. Asymmetric roots grip ground. Long weeping willow branches hang down in many fine strands with narrow jade leaf blades. Clear tree silhouette and a hollow wind aperture, not a human and not a normal oak.",
+  "seed": 861663,
+  "parameters": {
+    "randomize_seed": false,
+    "width": 1024,
+    "height": 1024,
+    "num_inference_steps": 4
+  },
+  "created_utc": "2026-11-01T14:13:56.062117+00:00",
+  "visual_review": "Reviewed with read_image: circular hollow wind eye, pale green wind ribbons, hanging willow foliage and asymmetric roots are clearly present. Full subject fits frame.",
+  "defects": ["Wind-eye ring is very regular and polished; jade dominates the ring while the supporting trunk reads as dark wood."],
+  "event_id": "d9b9005cea4a48f38d63a23c0e595b59",
+  "source_url": "https://black-forest-labs-flux-1-schnell.hf.space/gradio_api/file=/tmp/gradio/3e1a47a554efe5d79b672e3326c4b5d6be5f96423aa2057a5611ad9e3a7ac777/image.webp",
+  "returned_seed": 861663,
+  "sha256": "27fce95a8e095f0b4c3eb0bbe02320bfaa920fe6e06c0ff13d9420b5fd09ad07",
+  "download_sha256": "2ec365932f121b800bde3a678a54f83f65c3fd2247975a1b5f5ed03929d16465",
+  "size": [
+    1024,
+    1024
+  ],
+  "output": "jade_willow-v2.webp",
+  "status": "reviewed_with_defects"
+}

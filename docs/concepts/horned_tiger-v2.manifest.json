@@ -1,0 +1,28 @@
+{
+  "id": "horned_tiger",
+  "purpose": "AI-generated original design reference; NOT a game screenshot or geo model render",
+  "model": "black-forest-labs/FLUX.1-schnell",
+  "space": "https://black-forest-labs-flux-1-schnell.hf.space",
+  "prompt": "Original Chinese xianxia heavenly calamity creature design, one isolated subject, full body completely in frame, three-quarter view, readable silhouette, dark neutral grey studio background, detailed hand-painted game art modeling reference, dark stone, weathered bronze, jade and blood materials, restrained glowing accents, no scenery, no text, no logos. A colossal crouching TIGER with tiger face, thick shoulder blades and massive clawed paws, curved dark gold rock armor over the arched back, black tiger stripes, exposed long saber fangs and long segmented tail. EXACTLY ONE horn: a single long sharply tapering horn protrudes from the CENTER MIDLINE OF THE FOREHEAD above the nose, like a unicorn. Both temples are smooth and hornless, the ears are rounded furry tiger ears. ONE CENTRAL HORN ONLY, NO PAIRED HORNS. Low horizontal quadruped body twelve blocks long and seven blocks tall.",
+  "seed": 861470,
+  "parameters": {
+    "randomize_seed": false,
+    "width": 1024,
+    "height": 1024,
+    "num_inference_steps": 4
+  },
+  "created_utc": "2026-11-01T14:13:49.287806+00:00",
+  "visual_review": "Reviewed with read_image: exactly one visible central forehead horn; thick paws, stripes, shoulder armor, fangs and long tail present. Concept reference only.",
+  "defects": ["Horn tip touches the left image boundary; framing has insufficient margin.", "Armor reads as forged plate rather than dark-gold rock; no numeric block scale can be verified from this image."],
+  "event_id": "a1513ac56a2e4a38a1bf442ac5be3fdc",
+  "source_url": "https://black-forest-labs-flux-1-schnell.hf.space/gradio_api/file=/tmp/gradio/a177d5dc81f1574d84669322847862a2f41c4da0297027e2a5c87deeb5c39fe2/image.webp",
+  "returned_seed": 861470,
+  "sha256": "3d2548e632afffaa0aebbb0d3bee34d78d7051b769ccd3e1c6bf63ec043013b6",
+  "download_sha256": "ce9e5727d3061f52596d7558085beeafea408876371797e1ce464e948a8b2d6f",
+  "size": [
+    1024,
+    1024
+  ],
+  "output": "horned_tiger-v2.webp",
+  "status": "reviewed_with_defects"
+}

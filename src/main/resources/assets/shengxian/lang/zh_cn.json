@@ -1,0 +1,12 @@
+{
+  "key.categories.shengxian": "升仙",
+  "key.shengxian.qi": "打开升仙界面",
+  "screen.shengxian.qi": "升仙·三气汇卷",
+  "item.shengxian.ding_xian_you": "定仙游",
+  "item.shengxian.ren_ru_gu_immortal": "人如故仙蛊",
+  "item.shengxian.jiang_shan_ru_gu": "江山如故",
+  "tooltip.shengxian.ding_xian_you": "长按右键蓄力传送；潜行右键空气切换落点，潜行右键方块记录脚下位置（八处）",
+  "tooltip.shengxian.ren_ru_gu_immortal": "右键回溯自身近期伤势；潜行右键救治视线内玩家",
+  "tooltip.shengxian.jiang_shan_ru_gu": "右键复原本人仙窍灾毁；潜行右键切换留景（默认关闭，记录的自然材质爆炸无掉落）",
+  "tooltip.shengxian.immortal_gu_binding": "绑定本人当前成仙会话；催动消耗青提仙元，蛊虫可反复使用"
+}
