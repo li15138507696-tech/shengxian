@@ -5,3 +5,4 @@
 *.log
 /logs/
 /素材/
+node_modules/
