@@ -320,7 +320,27 @@ public final class FrameworkTest {
          check(StartGate.check(true, false, Optional.of(RuleProfile.ordinary()),
                AscensionReadiness.implementedCapabilities(),
                RuleProfile.ordinaryRequired(false)).allowed());
-      });      test("failure recovery requires the complete route and a canonically fatal qi cause", () -> {
+      });
+       test("start gate re-reads the requirement set instead of capturing it", () -> {
+          // Regression: the server captured the requirement set once at start-up while readiness()
+          // re-read the operator config on every call, so a config reload could report "closed"
+          // while this gate still admitted a new session. The supplier is consulted per attempt.
+          Path dir = Files.createTempDirectory("shengxian-gate-reload-");
+          boolean[] strict = {false};
+          AscensionService service = new AscensionService(new FileSessionRepository(dir),
+                AscensionReadiness.implementedCapabilities(),
+                () -> RuleProfile.ordinaryRequired(strict[0]));
+          RuleProfile profile = RuleProfile.ordinary();
+          AscensionRecord opened = service.start(new ApertureKey(OWNER, "before-reload"), true,
+                Optional.of(profile), 10L);
+          check(opened.session().phase() == Phase.PREPARING);
+          strict[0] = true;
+          ApertureKey afterReload = new ApertureKey(OWNER, "after-reload");
+          expect(IOException.class,
+                () -> service.start(afterReload, true, Optional.of(profile), 20L));
+          check(new FileSessionRepository(dir).find(afterReload).isEmpty());
+       });
+       test("failure recovery requires the complete route and a canonically fatal qi cause", () -> {
          AscensionReadiness.Decision closed = AscensionReadiness.evaluate(Set.of());
          check(!AscensionReadiness.mayApplyFailure(closed,
                Set.of(AscensionProgress.FailureCause.HUMAN_OVERLOAD)));

@@ -204,3 +204,13 @@
 - 210 项回归（+1 严格模式迁移测试）；Build 与 Verify 全过。产物 `shengxian-0.3.92.jar`，SHA256 `3428128e…e907`。
 - 未改动：升仙流程、仙窍账本、失败结算、六转写入、视觉层。GAP-001/004/006 仍是证据边界，未升级为已核。未启动游戏，实机表现待验收。
 - **构建产物回收（同轮）**：`build/runs` 每调用建一个 GUID 暂存目录且从不清理，已积压 170 个 / 582 MB。`build.ps1` 现于成功收尾自动清空 `build/runs`（失败的那次保留以便排查）；新增 `-Action Clean` 回收积压，并删除 `.cache` 本体 jar 的可重生成副本。发布产物改为**滚动保留最近 3 个版本**（旧 jar 不可重建，故不全删），成功构建后自动剪枝。另清掉 25 个一次性验收/测试环境目录与根目录陈旧解包副本。`build/` 由 3.65 GB 降至约 35 MB；清理后 Verify/SourceCheck/Test 全部照常通过。
+
+## 2026-11-02 0.3.93 bug 排查：修掉门禁配置重载脱钩
+
+- 排查手段：项目平时 `-nowarn`，静态检查全被压掉。本轮用 `-Xlint:all` 重编 159 个源文件 + 常见缺陷模式扫描。首轮 11 条警告、0 错误。
+- **真 bug（本轮回归）**：`readiness()` 每次实时读配置，而 `SessionStore`/`AscensionService` 在启动时一次性捕获必需集进 final 字段。运维运行中把 `requireUpstreamApertureWrite` 改 true 并重载配置后，界面报"门禁关闭"但 `store.start()` 仍放行——判定分裂。0.3.92 之前该开关恒为 false，捕获与实时读等价，故不可达；本轮引入可切开关后才暴露。
+- 修复：必需集改为每次判定求值的 `Supplier<Set>`；`AscensionService`/`SessionStore` 新增 Supplier 重载，`AscensionServer` 传 `GuzhenrenPlayerBridge::requiredCapabilities`；保留 `Set` 构造器供测试与纯域使用。core 仍不读配置。
+- 顺带修 2 条 `[static]` 警告（`UPSTREAM.capabilities()` 静态经实例调用）。警告 11 → 9。
+- 另 9 条保留：6 条 `EventBusSubscriber.bus()` 已标记移除（升级 NeoForge 时会硬失败，非当前缺陷）、1 条 `[this-escape]`（无子类，当前无害）、1 条 `hasChunkAt` 弃用、1 条锁未引用（虚警，`synchronized` 已保证互斥）。模式扫描：字符串 `==`、`equals` 缺 `hashCode`、流未关闭均为 0 处。
+- 211 项回归（+1 回归测试）；Build/Verify 全过。产物 `shengxian-0.3.93.jar`，SHA256 `4f2d769d…6290`。
+- 未实机验证：运行中改配置再试启动的实机表现，只有域层回归覆盖。

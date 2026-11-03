@@ -67,7 +67,8 @@ public final class FailureSettlementService {
         switch (action) {
             case ATTEMPT_ONCE -> {
                 if (!AscensionReadiness.mayApplyFailure(
-                        AscensionReadiness.evaluate(UPSTREAM.capabilities(),
+                        AscensionReadiness.evaluate(
+                                net.guzhenren.shengxian.compat.GuzhenrenPlayerBridge.capabilities(),
                                 net.guzhenren.shengxian.compat.GuzhenrenPlayerBridge.requiredCapabilities()),
                         causes)) {
                     player.sendSystemMessage(Component.literal(

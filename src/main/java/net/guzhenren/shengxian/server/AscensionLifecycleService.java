@@ -134,7 +134,8 @@ public final class AscensionLifecycleService {
             java.util.concurrent.ConcurrentHashMap.newKeySet();
 
     public static AscensionReadiness.Decision readiness() {
-        return AscensionReadiness.evaluate(UPSTREAM.capabilities(),
+        return AscensionReadiness.evaluate(
+                net.guzhenren.shengxian.compat.GuzhenrenPlayerBridge.capabilities(),
                 net.guzhenren.shengxian.compat.GuzhenrenPlayerBridge.requiredCapabilities());
     }
 

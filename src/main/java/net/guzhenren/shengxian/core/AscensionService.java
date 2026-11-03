@@ -21,7 +21,7 @@ import java.util.function.UnaryOperator;
 public final class AscensionService {
     private final SessionRepository repository;
     private final Set<RuleProfile.Capability> adapterCapabilities;
-    private final Set<RuleProfile.Capability> requiredCapabilities;
+    private final java.util.function.Supplier<Set<RuleProfile.Capability>> requiredCapabilities;
 
     public AscensionService(SessionRepository repository, Set<RuleProfile.Capability> adapterCapabilities) {
         this(repository, adapterCapabilities, RuleProfile.ordinaryRequired(false));
@@ -34,9 +34,20 @@ public final class AscensionService {
      */
     public AscensionService(SessionRepository repository, Set<RuleProfile.Capability> adapterCapabilities,
                             Set<RuleProfile.Capability> requiredCapabilities) {
+        this(repository, adapterCapabilities, () -> requiredCapabilities);
+    }
+
+    /**
+     * @param requiredCapabilities evaluated on every start attempt. A server deployment must pass a
+     *     supplier instead of a captured set: {@code readiness()} re-reads the operator config on
+     *     each call, so a captured set would let the reported gate state and this gate diverge after
+     *     a config reload.
+     */
+    public AscensionService(SessionRepository repository, Set<RuleProfile.Capability> adapterCapabilities,
+                            java.util.function.Supplier<Set<RuleProfile.Capability>> requiredCapabilities) {
         this.repository = Objects.requireNonNull(repository, "repository");
         this.adapterCapabilities = Set.copyOf(Objects.requireNonNull(adapterCapabilities, "adapterCapabilities"));
-        this.requiredCapabilities = Set.copyOf(Objects.requireNonNull(requiredCapabilities, "requiredCapabilities"));
+        this.requiredCapabilities = Objects.requireNonNull(requiredCapabilities, "requiredCapabilities");
     }
 
     /** Creates a session only when the start gate passes and no record exists yet. */
@@ -59,7 +70,7 @@ public final class AscensionService {
         }
         if (repository.find(key).isPresent()) throw new IOException("Session already exists");
         StartGate.Decision decision = StartGate.check(verifiedFivePeak, false, profile,
-                adapterCapabilities, requiredCapabilities);
+                adapterCapabilities, requiredCapabilities.get());
         if (!decision.allowed()) {
             throw new IOException("Start gate denied: " + String.join(",", decision.reasons()));
         }

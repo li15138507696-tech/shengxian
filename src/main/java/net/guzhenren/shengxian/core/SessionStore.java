@@ -32,6 +32,16 @@ public final class SessionStore {
     /** @param requiredCapabilities route requirements; strict mode passes the boundary-inclusive set */
     public SessionStore(Path directory, Set<RuleProfile.Capability> adapterCapabilities,
                         Set<RuleProfile.Capability> requiredCapabilities) throws IOException {
+        this(directory, adapterCapabilities, () -> requiredCapabilities);
+    }
+
+    /**
+     * @param requiredCapabilities evaluated per start attempt so a config reload cannot desync this
+     *     gate from {@code AscensionLifecycleService.readiness()}, which re-reads the config live
+     */
+    public SessionStore(Path directory, Set<RuleProfile.Capability> adapterCapabilities,
+                        java.util.function.Supplier<Set<RuleProfile.Capability>> requiredCapabilities)
+            throws IOException {
         this.directory = Objects.requireNonNull(directory, "directory").toAbsolutePath().normalize();
         this.repository = new FileSessionRepository(this.directory);
         this.service = new AscensionService(this.repository, adapterCapabilities, requiredCapabilities);

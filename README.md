@@ -1,8 +1,10 @@
 # 蛊真人·升仙
 
-独立 NeoForge 附属模组，ID shengxian，当前构建 0.3.92（普通升仙门禁默认开启版）。目标环境为 Minecraft 1.21.1、Java 21 与蛊真人本体；不依赖“天意”。
+独立 NeoForge 附属模组，ID shengxian，当前构建 0.3.93（门禁重载脱钩修复）。目标环境为 Minecraft 1.21.1、Java 21 与蛊真人本体；不依赖“天意”。
 
 ## 当前状态
+
+0.3.93 用 `-Xlint:all` 做了一次完整排查（项目平时 `-nowarn`，静态检查全被压掉），修掉一个本轮引入的回归：`readiness()` 每次实时读配置，而 `SessionStore`/`AscensionService` 在启动时一次性捕获必需集，运维运行中把 `requireUpstreamApertureWrite` 改 true 并重载配置后会出现「界面说门禁关闭、`store.start()` 仍放行」的判定分裂。现改为每次判定求值的 `Supplier<Set>`。同时清掉 2 条静态调用警告。211 项回归通过；仍有 9 条 lint 警告按性质保留（6 条 `EventBusSubscriber.bus()` 被 NeoForge 标记移除，升级时会硬失败）。见 [0.3.93 排查记录](docs/verification-0.3.93-gate-reload-desync.md)。
 
 0.3.92 把普通升仙门禁的最后一个“未实现能力”重新归类。`UPSTREAM_APERTURE_WRITE` 要求的“把仙窍写回本体玩家数据”按定义无法完成——本体 `PlayerVariables` 没有任何仙窍/仙元字段（UPSTREAM-010，2026-11-02 对 411 处字段穷举复核）。此前把这个不可能条件挂在必需集里，等于让普通路线永久关闭。现在它被记为**已审计字段边界**并移出默认必需集，仙窍继续由本模组世界侧账本承载（决策 PROJECT-003）；必需集改为显式参数，`StartGate` 不再遍历全枚举。**普通升仙路线默认开启**，不再需要 `apertureLedgerOnly`。想保留旧行为的运维可设 `ascension.requireUpstreamApertureWrite=true`（严格模式，且无配置可满足）。改动只涉及门禁判定口径，升仙流程、仙窍账本、失败结算与六转写入均未改动；GAP-001/004/006 仍是证据边界，未因此变成“已核”。见 [0.3.92 门禁默认开启](docs/verification-0.3.92-gate-default-open.md)。
 

@@ -44,7 +44,7 @@ public final class AscensionServer {
         try {
             // Publish stores only after all sessions and plot reservations reconcile safely.
             SessionStore loadedSessions = new SessionStore(sessions,
-                    GuzhenrenPlayerBridge.capabilities(), GuzhenrenPlayerBridge.requiredCapabilities());
+                    GuzhenrenPlayerBridge.capabilities(), GuzhenrenPlayerBridge::requiredCapabilities);
             ApertureSpaceStore loadedSpace = new ApertureSpaceStore(
                     sessions.getParent().resolve("aperture-space.properties"));
             BenMingGuStore loadedBenming = new BenMingGuStore(
